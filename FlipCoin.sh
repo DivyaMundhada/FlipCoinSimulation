@@ -1,15 +1,29 @@
 #! /bin/bash -x
 
-cointoss=$(( RANDOM%2 + 1 ))
-read -p "enter your choice: 1 head 2 tail " choice
+Head=0
+Tail=1
+H=0
+T=0
+count=0
 
-if [ $cointoss -eq $choice ]
-then
-        if [ $cointoss -eq 1 ]
+read -p "Enter how many times you want to flip the coin:" number
+
+while [ $count -lt $number ]
+do
+        a=$(( RANDOM % 2 ))
+
+        if [ $a -eq 0 ]
         then
-        echo "Head Win"
-        fi
-else
-        echo "Tail Win"
-fi
+        echo Head won
+        (( H++ ))
 
+        else
+        echo Tail Won
+        (( T++ ))
+        fi
+
+        (( count++ ))
+done
+
+echo "Number of times head won:" $H
+echo "Number of times tail won:" $T
