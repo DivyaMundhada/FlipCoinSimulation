@@ -4,11 +4,8 @@ Head=0
 Tail=1
 H=0
 T=0
-count=0
 
-read -p "Enter how many times you want to flip the coin:" number
-
-while [ $count -lt $number ]
+while [ $H -lt 21 ] && [ $T -lt 21 ]
 do
         a=$(( RANDOM % 2 ))
 
@@ -22,8 +19,19 @@ do
         (( T++ ))
         fi
 
-        (( count++ ))
 done
 
 echo "Number of times head won:" $H
 echo "Number of times tail won:" $T
+
+if [ $H -gt $T ]
+then
+headabove=$(( $H - $T ))
+echo Head won in total count by $headabove
+elif [ $T -gt $H ]
+then
+tailabove=$(( $T - $H ))
+echo Tail won in total count by $tailabove
+else
+echo It is a tie
+fi
